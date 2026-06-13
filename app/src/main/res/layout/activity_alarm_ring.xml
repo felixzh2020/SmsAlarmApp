@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:background="#CC000000"
+    android:padding="24dp">
+
+    <!-- 图标 -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="🔔"
+        android:textSize="64sp"
+        android:layout_marginBottom="16dp" />
+
+    <!-- 标题 -->
+    <TextView
+        android:id="@+id/tvAlarmTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="短信闹钟"
+        android:textColor="@color/text_title"
+        android:textSize="26sp"
+        android:textStyle="bold"
+        android:gravity="center"
+        android:layout_marginBottom="8dp" />
+
+    <!-- 倒计时提示 -->
+    <TextView
+        android:id="@+id/tvCountdown"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="⏰ 将在 5:00 后自动关闭"
+        android:textColor="@color/status_warning"
+        android:textSize="15sp"
+        android:gravity="center"
+        android:layout_marginBottom="24dp" />
+
+    <!-- 短信信息卡片 -->
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardCornerRadius="16dp"
+        app:cardElevation="12dp"
+        app:cardBackgroundColor="@color/bg_secondary"
+        android:layout_marginBottom="36dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="20dp">
+
+            <!-- 发信人 -->
+            <TextView
+                android:id="@+id/tvSmsSender"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="发信人：未知"
+                android:textColor="@color/text_accent"
+                android:textSize="17sp"
+                android:textStyle="bold"
+                android:layout_marginBottom="12dp" />
+
+            <!-- 分割线 -->
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/border_primary"
+                android:layout_marginBottom="12dp" />
+
+            <!-- 消息内容 -->
+            <TextView
+                android:id="@+id/tvSmsBody"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text=""
+                android:textColor="@color/text_primary"
+                android:textSize="15sp"
+                android:lineSpacingExtra="4dp"
+                android:maxLines="8"
+                android:ellipsize="end" />
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
+    <!-- 关闭按钮 -->
+    <Button
+        android:id="@+id/btnDismiss"
+        android:layout_width="240dp"
+        android:layout_height="60dp"
+        android:text="关 闭 闹 钟"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:textColor="@color/text_title"
+        android:backgroundTint="@color/status_warning"
+        app:cornerRadius="30dp" />
+
+</LinearLayout>

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- 原始 Material Design 配色 -->
+    <color name="ic_launcher_background">#1565C0</color>
+    <color name="colorPrimary">#00897B</color>
+    <color name="colorPrimaryDark">#00574B</color>
+    <color name="colorAccent">#FF4081</color>
+
+    <!-- 布局引用的颜色（原始风格值） -->
+    <color name="bg_primary">#FAFAFA</color>
+    <color name="bg_secondary">#FFFFFF</color>
+    <color name="bg_tertiary">#F5F5F5</color>
+
+    <color name="accent_primary">#00897B</color>
+    <color name="accent_secondary">#4DB6AC</color>
+    <color name="accent_glow">#00897B33</color>
+
+    <color name="text_primary">#212121</color>
+    <color name="text_secondary">#757575</color>
+    <color name="text_title">#212121</color>
+    <color name="text_accent">#00897B</color>
+
+    <color name="status_success">#4CAF50</color>
+    <color name="status_warning">#F44336</color>
+    <color name="status_disabled">#BDBDBD</color>
+
+    <color name="border_primary">#E0E0E0</color>
+    <color name="border_accent">#00897B33</color>
+
+    <color name="snackbar_bg">#323232</color>
+    <color name="snackbar_text">#FFFFFF</color>
+
+    <color name="dialog_bg">#FFFFFF</color>
+    <color name="dialog_title">#212121</color>
+    <color name="dialog_message">#757575</color>
+</resources>
