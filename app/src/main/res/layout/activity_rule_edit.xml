@@ -279,7 +279,7 @@
                 android:text="保  存"
                 android:textSize="18sp"
                 android:textStyle="bold"
-                android:textColor="@color/bg_primary"
+                android:textColor="#FFFFFF"
                 android:backgroundTint="@color/accent_primary" />
 
         </LinearLayout>

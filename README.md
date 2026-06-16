@@ -99,7 +99,9 @@ SmsAlarmApp/
 - 短信监听是**静态广播**，App 无需保持前台运行即可接收短信
 
 ## 实测效果展示
+- 欢迎页面
+- ![bf7c1e89aa79f3c4b37824faff7f168d.jpg](images/bf7c1e89aa79f3c4b37824faff7f168d.jpg)
 - 新建规则
-- ![img.png](images/img1.png)
+- ![30203f8370f8e226808b027296184723.jpg](images/30203f8370f8e226808b027296184723.jpg)
 - 收到短信效果
 - ![img.png](images/img2.png)

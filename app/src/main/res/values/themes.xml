@@ -5,5 +5,29 @@
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
         <item name="android:windowBackground">@color/bg_primary</item>
+        <!-- 弹窗/卡片等表面颜色改为暖色 -->
+        <item name="colorSurface">@color/bg_secondary</item>
+        <item name="android:colorBackground">@color/bg_secondary</item>
+        <!-- Material 弹窗专用背景色 -->
+        <item name="materialAlertDialogTheme">@style/ThemeOverlay.SmsAlarmApp.MaterialAlertDialog</item>
+    </style>
+
+    <!-- Material 弹窗暖色风格 -->
+    <style name="ThemeOverlay.SmsAlarmApp.MaterialAlertDialog" parent="ThemeOverlay.MaterialComponents.MaterialAlertDialog">
+        <item name="colorSurface">@color/bg_secondary</item>
+        <item name="android:background">@color/bg_secondary</item>
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="android:textColorPrimary">@color/text_primary</item>
+        <item name="android:textColorSecondary">@color/text_secondary</item>
+    </style>
+
+    <!-- 欢迎界面主题：浅色背景，与主页风格一致 -->
+    <style name="Theme.SmsAlarmApp.Splash" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:windowBackground">@color/bg_primary</item>
+        <item name="android:statusBarColor">@color/bg_primary</item>
+        <item name="android:windowLightStatusBar">true</item>
     </style>
 </resources>

@@ -27,15 +27,21 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.SmsAlarmApp">
 
-        <!-- 主界面 -->
+        <!-- 欢迎界面（启动入口） -->
         <activity
-            android:name=".ui.MainActivity"
-            android:exported="true">
+            android:name=".ui.SplashActivity"
+            android:exported="true"
+            android:theme="@style/Theme.SmsAlarmApp.Splash">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <!-- 主界面 -->
+        <activity
+            android:name=".ui.MainActivity"
+            android:exported="false" />
 
         <!-- 闹钟响铃界面 -->
         <activity

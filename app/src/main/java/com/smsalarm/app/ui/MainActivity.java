@@ -7,8 +7,9 @@ import android.os.Build;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.TextView;
 
-import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.ActivityResultLauncher;;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
@@ -67,6 +68,7 @@ public class MainActivity extends AppCompatActivity {
             (rule, enabled) -> {                     // 开关切换
                 rule.setEnabled(enabled);
                 repository.saveRule(rule);
+                updateSummary();                     // 立即刷新总览数字
             }
         );
         binding.rvRules.setLayoutManager(new LinearLayoutManager(this));
@@ -90,6 +92,18 @@ public class MainActivity extends AppCompatActivity {
         adapter.setRules(rules);
         binding.tvEmpty.setVisibility(rules.isEmpty()
                 ? android.view.View.VISIBLE : android.view.View.GONE);
+        updateSummary();
+    }
+
+    private void updateSummary() {
+        List<SmsRule> rules = repository.getAllRules();
+        int total = rules.size();
+        int enabled = 0;
+        for (SmsRule rule : rules) {
+            if (rule.isEnabled()) enabled++;
+        }
+        binding.tvTotalCount.setText("总规则数：" + total);
+        binding.tvEnabledCount.setText("已启用：" + enabled);
     }
 
     private void openEditRule(String ruleId) {
@@ -160,9 +174,27 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void showDialog() {
+        List<SmsRule> rules = repository.getAllRules();
+        int total = rules.size();
+        int enabled = 0;
+        for (SmsRule rule : rules) {
+            if (rule.isEnabled()) enabled++;
+        }
+        String msg = "本应用监听手机收到的短信，当短信匹配到已启用的规则时，自动触发闹钟提醒。\n\n"
+            + "【匹配规则】\n"
+            + "• 按发信人匹配：短信发送方包含指定关键词即触发\n"
+            + "• 按内容匹配：短信正文包含指定关键词即触发\n"
+            + "• 同时匹配：发信人和内容都满足才触发\n"
+            + "• 开启正则匹配后，关键词将作为正则表达式解析\n\n"
+            + "【操作说明】\n"
+            + "• 点击 + 号新建规则\n"
+            + "• 点击规则卡片编辑规则\n"
+            + "• 长按规则卡片删除规则\n"
+            + "• 通过开关快速启用/禁用规则\n\n"
+            + "当前共 " + total + " 条规则，已启用 " + enabled + " 条";
         new MaterialAlertDialogBuilder(this)
-            .setTitle("短信匹配说明")
-            .setMessage("App运行后将自动监听收件箱。收到短信时若匹配任意已启用规则，则立即触发闹钟。\n\n当前已启用规则数：" + repository.getEnabledRules().size())
+            .setTitle("使用说明")
+            .setMessage(msg)
             .setPositiveButton("知道了", null)
             .show();
     }

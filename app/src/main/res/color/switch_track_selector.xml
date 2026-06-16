@@ -2,6 +2,6 @@
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
     <!-- 开关打开：主色调 -->
     <item android:state_checked="true" android:color="#4D00897B" />
-    <!-- 开关关闭：浅灰色 -->
-    <item android:color="#1F000000" />
+    <!-- 开关关闭：暖灰色 -->
+    <item android:color="#1F5D4E3A" />
 </selector>

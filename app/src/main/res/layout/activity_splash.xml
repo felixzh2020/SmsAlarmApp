@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:background="@color/bg_primary"
+    android:padding="40dp">
+
+    <!-- 应用图标 -->
+    <ImageView
+        android:id="@+id/ivSplashIcon"
+        android:layout_width="96dp"
+        android:layout_height="96dp"
+        android:src="@mipmap/ic_launcher"
+        android:contentDescription="应用图标" />
+
+    <!-- 应用名称，与主页 Toolbar 标题同色 -->
+    <TextView
+        android:id="@+id/tvSplashTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="短信闹钟"
+        android:textColor="@color/text_accent"
+        android:textSize="26sp"
+        android:textStyle="bold"
+        android:letterSpacing="0.05" />
+
+    <!-- 副标题，与主页空状态提示同色 -->
+    <TextView
+        android:id="@+id/tvSplashSubtitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="监听短信，智能触发闹钟"
+        android:textColor="@color/text_secondary"
+        android:textSize="14sp" />
+
+    <!-- 加载进度条，使用主色调 -->
+    <ProgressBar
+        android:id="@+id/progressSplash"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="120dp"
+        android:layout_height="3dp"
+        android:layout_marginTop="48dp"
+        android:indeterminate="true"
+        android:indeterminateTint="@color/colorPrimary" />
+
+    <!-- 底部署名，浅灰色与次级文字一致 -->
+    <TextView
+        android:id="@+id/tvSplashAuthor"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:text="微信公众号：大数据从业者"
+        android:textColor="@color/text_secondary"
+        android:textSize="12sp" />
+
+</LinearLayout>
