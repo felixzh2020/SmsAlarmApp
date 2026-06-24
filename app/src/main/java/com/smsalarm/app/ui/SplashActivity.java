@@ -11,11 +11,11 @@ import com.smsalarm.app.R;
 
 /**
  * 欢迎界面（Splash Screen）
- * 展示 3 秒后自动跳转到 MainActivity
+ * 展示 2 秒后自动跳转到 MainActivity
  */
 public class SplashActivity extends AppCompatActivity {
 
-    private static final long SPLASH_DURATION_MS = 3000L;
+    private static final long SPLASH_DURATION_MS = 2000L;
 
     private final Handler handler = new Handler(Looper.getMainLooper());
 

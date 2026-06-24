@@ -34,7 +34,7 @@ public class RuleEditActivity extends AppCompatActivity {
     public static final String EXTRA_RULE_ID = "rule_id";
 
     private static final int[] DURATION_OPTIONS_MS = {
-        60000, 120000, 180000, 300000, 600000, 900000
+        60000, 120000, 180000, 300000, 600000, 900000, 1800000
     };
 
     private ActivityRuleEditBinding binding;
@@ -204,10 +204,10 @@ public class RuleEditActivity extends AppCompatActivity {
                 if (ringtone != null) {
                     binding.tvToneName.setText(ringtone.getTitle(this));
                 } else {
-                    binding.tvToneName.setText("自定义音频");
+                    binding.tvToneName.setText("未知铃声");
                 }
             } catch (Exception e) {
-                binding.tvToneName.setText("自定义音频（无效）");
+                binding.tvToneName.setText("未知铃声");
             }
         } else {
             binding.tvToneName.setText("使用系统默认铃声");

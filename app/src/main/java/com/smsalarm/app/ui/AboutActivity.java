@@ -37,7 +37,7 @@ public class AboutActivity extends AppCompatActivity {
         } catch (PackageManager.NameNotFoundException e) {
             // 不会发生
         }
-        binding.tvVersion.setText("v" + versionName + "（" + versionCode + "）");
+        binding.tvVersion.setText("v" + versionName);
     }
 
     @Override

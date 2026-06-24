@@ -4,6 +4,7 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.WindowManager;
 
@@ -30,12 +31,21 @@ public class AlarmRingActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        // 锁屏上方显示
-        getWindow().addFlags(
-            WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON |
-            WindowManager.LayoutParams.FLAG_TURN_SCREEN_ON |
-            WindowManager.LayoutParams.FLAG_SHOW_WHEN_LOCKED
-        );
+        // 锁屏上方显示 + 点亮屏幕
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O_MR1) {
+            // API 27+ 使用新 API
+            setShowWhenLocked(true);
+            setTurnScreenOn(true);
+        } else {
+            // API 26 使用窗口标志
+            getWindow().addFlags(
+                WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON |
+                WindowManager.LayoutParams.FLAG_TURN_SCREEN_ON |
+                WindowManager.LayoutParams.FLAG_SHOW_WHEN_LOCKED
+            );
+        }
+        // 保持屏幕常亮（所有版本通用）
+        getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
 
         binding = ActivityAlarmRingBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
@@ -47,7 +57,7 @@ public class AlarmRingActivity extends AppCompatActivity {
         maxRingDurationMs = duration > 0 ? duration : AlarmService.DEFAULT_MAX_RING_DURATION_MS;
         remainingMs = maxRingDurationMs;
 
-        binding.tvAlarmTitle.setText("🔔 " + (ruleName != null ? ruleName : "短信闹钟"));
+        binding.tvAlarmTitle.setText(ruleName != null ? ruleName : "短信闹钟");
         binding.tvSmsSender.setText("发信人：" + (smsSender != null ? smsSender : "未知"));
         binding.tvSmsBody.setText(smsBody != null ? smsBody : "");
 
@@ -79,7 +89,7 @@ public class AlarmRingActivity extends AppCompatActivity {
         String ruleName  = intent.getStringExtra(AlarmService.EXTRA_RULE_NAME);
         String smsSender = intent.getStringExtra(AlarmService.EXTRA_SMS_SENDER);
         String smsBody   = intent.getStringExtra(AlarmService.EXTRA_SMS_BODY);
-        binding.tvAlarmTitle.setText("🔔 " + (ruleName != null ? ruleName : "短信闹钟"));
+        binding.tvAlarmTitle.setText(ruleName != null ? ruleName : "短信闹钟");
         binding.tvSmsSender.setText("发信人：" + (smsSender != null ? smsSender : "未知"));
         binding.tvSmsBody.setText(smsBody != null ? smsBody : "");
     }
@@ -89,7 +99,7 @@ public class AlarmRingActivity extends AppCompatActivity {
         long minutes = totalSeconds / 60;
         long seconds = totalSeconds % 60;
         String timeStr = String.format("%d:%02d", minutes, seconds);
-        binding.tvCountdown.setText("⏰ 将在 " + timeStr + " 后自动关闭");
+        binding.tvCountdown.setText("将在 " + timeStr + " 后自动关闭");
     }
 
     private void dismissAlarm() {

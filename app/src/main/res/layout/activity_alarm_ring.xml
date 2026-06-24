@@ -6,47 +6,54 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:gravity="center"
-    android:background="#CC000000"
-    android:padding="24dp">
+    android:background="@color/bg_primary"
+    android:padding="28dp">
 
-    <!-- 图标 -->
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="🔔"
-        android:textSize="64sp"
-        android:layout_marginBottom="16dp" />
+    <!-- 闹钟图标（圆形背景 + 应用图标） -->
+    <ImageView
+        android:layout_width="88dp"
+        android:layout_height="88dp"
+        android:src="@mipmap/ic_launcher"
+        android:contentDescription="闹钟图标"
+        android:layout_marginBottom="20dp"
+        android:background="@drawable/bg_alarm_icon"
+        android:padding="14dp" />
 
     <!-- 标题 -->
     <TextView
         android:id="@+id/tvAlarmTitle"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="短信闹钟"
-        android:textColor="@color/text_title"
-        android:textSize="26sp"
+        android:textColor="@color/text_accent"
+        android:textSize="24sp"
         android:textStyle="bold"
         android:gravity="center"
-        android:layout_marginBottom="8dp" />
+        android:layout_marginBottom="10dp" />
 
-    <!-- 倒计时提示 -->
+    <!-- 倒计时胶囊 -->
     <TextView
         android:id="@+id/tvCountdown"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="⏰ 将在 5:00 后自动关闭"
-        android:textColor="@color/status_warning"
-        android:textSize="15sp"
+        android:text="将在 5:00 后自动关闭"
+        android:textColor="@color/text_secondary"
+        android:textSize="14sp"
         android:gravity="center"
-        android:layout_marginBottom="24dp" />
+        android:background="@drawable/bg_countdown_pill"
+        android:paddingHorizontal="18dp"
+        android:paddingVertical="7dp"
+        android:layout_marginBottom="28dp" />
 
     <!-- 短信信息卡片 -->
-    <androidx.cardview.widget.CardView
+    <com.google.android.material.card.MaterialCardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:cardCornerRadius="16dp"
-        app:cardElevation="12dp"
+        app:cardCornerRadius="14dp"
+        app:cardElevation="4dp"
         app:cardBackgroundColor="@color/bg_secondary"
+        app:strokeColor="@color/border_primary"
+        app:strokeWidth="1dp"
         android:layout_marginBottom="36dp">
 
         <LinearLayout
@@ -55,6 +62,15 @@
             android:orientation="vertical"
             android:padding="20dp">
 
+            <!-- 卡片标题 -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="触发短信"
+                android:textColor="@color/text_secondary"
+                android:textSize="12sp"
+                android:layout_marginBottom="14dp" />
+
             <!-- 发信人 -->
             <TextView
                 android:id="@+id/tvSmsSender"
@@ -62,16 +78,16 @@
                 android:layout_height="wrap_content"
                 android:text="发信人：未知"
                 android:textColor="@color/text_accent"
-                android:textSize="17sp"
+                android:textSize="16sp"
                 android:textStyle="bold"
-                android:layout_marginBottom="12dp" />
+                android:layout_marginBottom="10dp" />
 
             <!-- 分割线 -->
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
                 android:background="@color/border_primary"
-                android:layout_marginBottom="12dp" />
+                android:layout_marginBottom="10dp" />
 
             <!-- 消息内容 -->
             <TextView
@@ -85,18 +101,19 @@
                 android:maxLines="8"
                 android:ellipsize="end" />
         </LinearLayout>
-    </androidx.cardview.widget.CardView>
+    </com.google.android.material.card.MaterialCardView>
 
     <!-- 关闭按钮 -->
-    <Button
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/btnDismiss"
-        android:layout_width="240dp"
-        android:layout_height="60dp"
-        android:text="关 闭 闹 钟"
-        android:textSize="20sp"
+        android:layout_width="260dp"
+        android:layout_height="56dp"
+        android:text="关闭闹钟"
+        android:textSize="18sp"
         android:textStyle="bold"
-        android:textColor="@color/text_title"
-        android:backgroundTint="@color/status_warning"
-        app:cornerRadius="30dp" />
+        android:textColor="#FFFFFF"
+        app:backgroundTint="@color/colorPrimary"
+        app:cornerRadius="28dp"
+        app:elevation="2dp" />
 
 </LinearLayout>

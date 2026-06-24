@@ -15,6 +15,7 @@ import android.os.Handler;
 import android.os.IBinder;
 import android.os.Looper;
 import android.os.Message;
+import android.os.PowerManager;
 import android.os.VibrationEffect;
 import android.os.Vibrator;
 import android.util.Log;
@@ -53,6 +54,9 @@ public class AlarmService extends Service {
 
     private MediaPlayer mediaPlayer;
     private Vibrator vibrator;
+
+    // 亮屏唤醒锁
+    private PowerManager.WakeLock wakeLock;
 
     // 倒计时控制
     private Handler tickHandler;
@@ -95,6 +99,7 @@ public class AlarmService extends Service {
         }
 
         // 启动响铃界面
+        acquireWakeLock();
         Intent ringIntent = new Intent(this, AlarmRingActivity.class);
         ringIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
         ringIntent.putExtra(EXTRA_RULE_NAME, ruleName);
@@ -184,6 +189,7 @@ public class AlarmService extends Service {
     public void stopAlarm() {
         stopCountdown();
         stopMediaPlayer();
+        releaseWakeLock();
         if (vibrator != null) {
             vibrator.cancel();
             vibrator = null;
@@ -197,6 +203,38 @@ public class AlarmService extends Service {
             if (mediaPlayer.isPlaying()) mediaPlayer.stop();
             mediaPlayer.release();
             mediaPlayer = null;
+        }
+    }
+
+    /**
+     * 获取亮屏唤醒锁，从息屏状态点亮屏幕
+     */
+    private void acquireWakeLock() {
+        try {
+            PowerManager pm = (PowerManager) getSystemService(POWER_SERVICE);
+            if (pm != null) {
+                wakeLock = pm.newWakeLock(
+                    PowerManager.FULL_WAKE_LOCK |
+                    PowerManager.ACQUIRE_CAUSES_WAKEUP |
+                    PowerManager.ON_AFTER_RELEASE,
+                    "SmsAlarm:WakeLock"
+                );
+                wakeLock.acquire(10 * 60 * 1000L); // 最多10分钟自动释放
+                Log.d(TAG, "唤醒锁已获取，屏幕已点亮");
+            }
+        } catch (Exception e) {
+            Log.e(TAG, "获取唤醒锁失败", e);
+        }
+    }
+
+    /**
+     * 释放唤醒锁
+     */
+    private void releaseWakeLock() {
+        if (wakeLock != null && wakeLock.isHeld()) {
+            wakeLock.release();
+            wakeLock = null;
+            Log.d(TAG, "唤醒锁已释放");
         }
     }
 
@@ -217,11 +255,13 @@ public class AlarmService extends Service {
                 this, 1, stopIntent, PendingIntent.FLAG_UPDATE_CURRENT | PendingIntent.FLAG_IMMUTABLE);
 
         return new NotificationCompat.Builder(this, CHANNEL_ID)
-                .setContentTitle("🔔 短信闹钟：" + ruleName)
+                .setContentTitle("短信闹钟：" + ruleName)
                 .setContentText("来自：" + sender)
                 .setStyle(new NotificationCompat.BigTextStyle()
                         .bigText("来自：" + sender + "\n内容：" + body))
                 .setSmallIcon(R.drawable.ic_alarm)
+                .setColor(0xFF00897B)
+                .setColorized(true)
                 .setPriority(NotificationCompat.PRIORITY_MAX)
                 .setCategory(NotificationCompat.CATEGORY_ALARM)
                 .setContentIntent(openPending)
