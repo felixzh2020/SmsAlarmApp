@@ -45,12 +45,13 @@
 
             <TextView
                 android:id="@+id/tvTotalCount"
-                android:layout_width="0dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
                 android:text="总规则数：0"
-                android:textColor="@color/text_primary"
-                android:textSize="14sp" />
+                android:textColor="@color/colorPrimary"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                android:layout_marginEnd="16dp" />
 
             <TextView
                 android:id="@+id/tvEnabledCount"
@@ -61,6 +62,21 @@
                 android:textColor="@color/colorPrimary"
                 android:textSize="14sp"
                 android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tvAlarmLog"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="闹钟记录"
+                android:textColor="@color/colorPrimary"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                android:clickable="true"
+                android:focusable="true"
+                android:paddingStart="8dp"
+                android:paddingEnd="8dp"
+                android:paddingTop="4dp"
+                android:paddingBottom="4dp" />
 
         </LinearLayout>
 

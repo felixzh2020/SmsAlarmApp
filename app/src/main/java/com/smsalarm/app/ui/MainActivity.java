@@ -9,7 +9,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
 
-import androidx.activity.result.ActivityResultLauncher;;
+import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
@@ -76,6 +76,10 @@ public class MainActivity extends AppCompatActivity {
 
         // FAB 新建规则
         binding.fabAdd.setOnClickListener(v -> openEditRule(null));
+
+        // 闹钟记录入口
+        binding.tvAlarmLog.setOnClickListener(v ->
+            startActivity(new Intent(this, AlarmLogActivity.class)));
 
         // 请求权限
         requestRequiredPermissions();

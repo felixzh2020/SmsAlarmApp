@@ -13,6 +13,9 @@ import android.media.RingtoneManager;
 import android.net.Uri;
 import android.os.Handler;
 import android.os.IBinder;
+
+import com.smsalarm.app.data.AlarmRecord;
+import com.smsalarm.app.data.AlarmRecordRepository;
 import android.os.Looper;
 import android.os.Message;
 import android.os.PowerManager;
@@ -89,6 +92,10 @@ public class AlarmService extends Service {
         // 启动前台通知
         Notification notification = buildNotification(ruleName, smsSender, smsBody);
         startForeground(NOTIFICATION_ID, notification);
+
+        // 保存触发记录
+        AlarmRecord record = new AlarmRecord(ruleName, smsSender, smsBody);
+        AlarmRecordRepository.getInstance(this).addRecord(record);
 
         // 播放铃声
         playAlarmTone(alarmToneUri);

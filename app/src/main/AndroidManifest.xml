@@ -56,6 +56,11 @@
             android:name=".ui.RuleEditActivity"
             android:exported="false" />
 
+        <!-- 闹钟记录界面 -->
+        <activity
+            android:name=".ui.AlarmLogActivity"
+            android:exported="false" />
+
         <!-- 关于界面 -->
         <activity
             android:name=".ui.AboutActivity"
