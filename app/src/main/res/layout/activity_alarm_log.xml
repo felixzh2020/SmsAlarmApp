@@ -64,6 +64,19 @@
 
         </LinearLayout>
 
+        <!-- 左滑删除提示 -->
+        <TextView
+            android:id="@+id/tvSwipeHint"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/bg_secondary"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"
+            android:paddingBottom="10dp"
+            android:text="← 左右滑动单条记录可删除"
+            android:textColor="@color/text_secondary"
+            android:textSize="12sp" />
+
         <!-- 分割线 -->
         <View
             android:layout_width="match_parent"

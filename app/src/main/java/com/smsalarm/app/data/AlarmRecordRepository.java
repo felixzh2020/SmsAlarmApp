@@ -61,6 +61,16 @@ public class AlarmRecordRepository {
         prefs.edit().remove(KEY_RECORDS).apply();
     }
 
+    /** 删除指定 id 的某一条记录 */
+    public void deleteRecord(String id) {
+        if (id == null) return;
+        List<AlarmRecord> records = loadFromPrefs();
+        boolean removed = records.removeIf(r -> id.equals(r.getId()));
+        if (removed) {
+            persist(records);
+        }
+    }
+
     /** 获取记录总数 */
     public int getCount() {
         return loadFromPrefs().size();

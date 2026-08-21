@@ -30,6 +30,22 @@ public class AlarmLogAdapter extends RecyclerView.Adapter<AlarmLogAdapter.ViewHo
         notifyDataSetChanged();
     }
 
+    /** 移除指定位置记录并返回被移除的对象（用于左滑删除） */
+    public AlarmRecord removeAt(int position) {
+        if (position < 0 || position >= records.size()) return null;
+        AlarmRecord removed = records.remove(position);
+        notifyItemRemoved(position);
+        return removed;
+    }
+
+    /** 在指定位置重新插入记录（用于左滑删除取消时回滚） */
+    public void addAt(int position, AlarmRecord record) {
+        if (record == null) return;
+        int target = Math.max(0, Math.min(position, records.size()));
+        records.add(target, record);
+        notifyItemInserted(target);
+    }
+
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
